@@ -1,0 +1,212 @@
+{
+  "_comment": "PathFindAR Sample Building — 2-floor office/campus layout. All positions in Unity world coords (meters, Y-up, right-handed). Floor 0 = ground floor.",
+
+  "building": {
+    "name": "Sample Building",
+    "floors": 2,
+    "floor_height_m": 4.0,
+    "coordinate_system": "unity_world"
+  },
+
+  "nodes": [
+    {
+      "id": "entrance",
+      "label": "Main Entrance",
+      "position": [0.0, 0.0, 0.0],
+      "floor": 0,
+      "type": "poi",
+      "tags": ["entrance", "accessible"]
+    },
+    {
+      "id": "lobby",
+      "label": "Lobby",
+      "position": [0.0, 0.0, 5.0],
+      "floor": 0,
+      "type": "junction",
+      "tags": []
+    },
+    {
+      "id": "reception",
+      "label": "Reception",
+      "position": [5.0, 0.0, 5.0],
+      "floor": 0,
+      "type": "poi",
+      "tags": ["accessible"]
+    },
+    {
+      "id": "corridor_gf_a",
+      "label": "Ground Floor Corridor A",
+      "position": [0.0, 0.0, 12.0],
+      "floor": 0,
+      "type": "corridor",
+      "tags": []
+    },
+    {
+      "id": "corridor_gf_b",
+      "label": "Ground Floor Corridor B",
+      "position": [8.0, 0.0, 12.0],
+      "floor": 0,
+      "type": "corridor",
+      "tags": []
+    },
+    {
+      "id": "room_101",
+      "label": "Room 101",
+      "position": [0.0, 0.0, 18.0],
+      "floor": 0,
+      "type": "room",
+      "tags": ["classroom"]
+    },
+    {
+      "id": "room_102",
+      "label": "Room 102",
+      "position": [8.0, 0.0, 18.0],
+      "floor": 0,
+      "type": "room",
+      "tags": ["classroom"]
+    },
+    {
+      "id": "room_103",
+      "label": "Room 103",
+      "position": [16.0, 0.0, 12.0],
+      "floor": 0,
+      "type": "room",
+      "tags": ["lab"]
+    },
+    {
+      "id": "toilet_gf",
+      "label": "Toilets (GF)",
+      "position": [-6.0, 0.0, 12.0],
+      "floor": 0,
+      "type": "poi",
+      "tags": ["toilet", "accessible"]
+    },
+    {
+      "id": "stairwell_gf",
+      "label": "Stairwell (GF)",
+      "position": [4.0, 0.0, 12.0],
+      "floor": 0,
+      "type": "stairwell",
+      "tags": ["vertical_transition"]
+    },
+    {
+      "id": "elevator_gf",
+      "label": "Elevator (GF)",
+      "position": [4.0, 0.0, 8.0],
+      "floor": 0,
+      "type": "elevator",
+      "tags": ["vertical_transition", "accessible"]
+    },
+    {
+      "id": "stairwell_f1",
+      "label": "Stairwell (Floor 1)",
+      "position": [4.0, 4.0, 12.0],
+      "floor": 1,
+      "type": "stairwell",
+      "tags": ["vertical_transition"]
+    },
+    {
+      "id": "elevator_f1",
+      "label": "Elevator (Floor 1)",
+      "position": [4.0, 4.0, 8.0],
+      "floor": 1,
+      "type": "elevator",
+      "tags": ["vertical_transition", "accessible"]
+    },
+    {
+      "id": "corridor_f1_a",
+      "label": "Floor 1 Corridor A",
+      "position": [0.0, 4.0, 12.0],
+      "floor": 1,
+      "type": "corridor",
+      "tags": []
+    },
+    {
+      "id": "corridor_f1_b",
+      "label": "Floor 1 Corridor B",
+      "position": [8.0, 4.0, 12.0],
+      "floor": 1,
+      "type": "corridor",
+      "tags": []
+    },
+    {
+      "id": "room_201",
+      "label": "Room 201",
+      "position": [0.0, 4.0, 18.0],
+      "floor": 1,
+      "type": "room",
+      "tags": ["office"]
+    },
+    {
+      "id": "room_202",
+      "label": "Room 202",
+      "position": [8.0, 4.0, 18.0],
+      "floor": 1,
+      "type": "room",
+      "tags": ["office"]
+    },
+    {
+      "id": "meeting_room_a",
+      "label": "Meeting Room A",
+      "position": [16.0, 4.0, 12.0],
+      "floor": 1,
+      "type": "poi",
+      "tags": ["meeting_room"]
+    },
+    {
+      "id": "toilet_f1",
+      "label": "Toilets (Floor 1)",
+      "position": [-6.0, 4.0, 12.0],
+      "floor": 1,
+      "type": "poi",
+      "tags": ["toilet", "accessible"]
+    },
+    {
+      "id": "cafeteria",
+      "label": "Cafeteria",
+      "position": [-6.0, 4.0, 18.0],
+      "floor": 1,
+      "type": "poi",
+      "tags": ["food", "accessible"]
+    }
+  ],
+
+  "edges": [
+    {"from": "entrance",       "to": "lobby",          "distance_m": 5.0,  "bidirectional": true,  "tags": []},
+    {"from": "lobby",          "to": "reception",      "distance_m": 5.1,  "bidirectional": true,  "tags": []},
+    {"from": "lobby",          "to": "elevator_gf",     "distance_m": 3.0,  "bidirectional": true,  "tags": ["accessible"]},
+    {"from": "lobby",          "to": "corridor_gf_a",  "distance_m": 7.0,  "bidirectional": true,  "tags": []},
+    {"from": "elevator_gf",    "to": "stairwell_gf",   "distance_m": 2.0,  "bidirectional": true,  "tags": []},
+    {"from": "stairwell_gf",   "to": "corridor_gf_a",  "distance_m": 4.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_gf_a",  "to": "corridor_gf_b",  "distance_m": 8.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_gf_a",  "to": "toilet_gf",      "distance_m": 6.1,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_gf_a",  "to": "room_101",       "distance_m": 6.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_gf_b",  "to": "room_102",       "distance_m": 6.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_gf_b",  "to": "room_103",       "distance_m": 8.1,  "bidirectional": true,  "tags": []},
+
+    {"from": "stairwell_gf",   "to": "stairwell_f1",   "distance_m": 6.0,  "bidirectional": true,  "tags": ["vertical", "stairs"]},
+    {"from": "elevator_gf",    "to": "elevator_f1",    "distance_m": 5.0,  "bidirectional": true,  "tags": ["vertical", "elevator", "accessible"]},
+
+    {"from": "stairwell_f1",   "to": "corridor_f1_a",  "distance_m": 4.0,  "bidirectional": true,  "tags": []},
+    {"from": "stairwell_f1",   "to": "corridor_f1_b",  "distance_m": 4.0,  "bidirectional": true,  "tags": []},
+    {"from": "elevator_f1",    "to": "stairwell_f1",   "distance_m": 2.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_a",  "to": "corridor_f1_b",  "distance_m": 8.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_a",  "to": "toilet_f1",      "distance_m": 6.1,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_a",  "to": "room_201",       "distance_m": 6.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_b",  "to": "room_202",       "distance_m": 6.0,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_b",  "to": "meeting_room_a", "distance_m": 8.1,  "bidirectional": true,  "tags": []},
+    {"from": "toilet_f1",      "to": "cafeteria",      "distance_m": 6.1,  "bidirectional": true,  "tags": []},
+    {"from": "corridor_f1_a",  "to": "cafeteria",      "distance_m": 9.0,  "bidirectional": true,  "tags": []}
+  ],
+
+  "poi_aliases": {
+    "toilet":         ["toilet_gf", "toilet_f1"],
+    "restroom":       ["toilet_gf", "toilet_f1"],
+    "wc":             ["toilet_gf", "toilet_f1"],
+    "lift":           ["elevator_gf", "elevator_f1"],
+    "stairs":         ["stairwell_gf", "stairwell_f1"],
+    "cafe":           ["cafeteria"],
+    "food":           ["cafeteria"],
+    "meeting":        ["meeting_room_a"]
+  }
+}

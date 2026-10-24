@@ -1,0 +1,21 @@
+﻿# Unity Frontend exclusions
+frontend-unity/Library/
+frontend-unity/Temp/
+frontend-unity/Obj/
+frontend-unity/Build/
+frontend-unity/Builds/
+frontend-unity/Logs/
+frontend-unity/UserSettings/
+*.csproj
+*.sln
+.vs/
+.vscode/
+*.bak_*
+# Backend Python exclusions
+backend-fastapi/.venv/
+backend-fastapi/**/__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+.env
+!.env.example

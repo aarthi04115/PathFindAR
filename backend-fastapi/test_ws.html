@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PathFindAR WebSocket Tester</title>
+    <style>
+        body { font-family: system-ui, sans-serif; padding: 20px; background: #1e1e1e; color: #fff; }
+        button { padding: 10px 15px; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; }
+        button:hover { background: #005f9e; }
+        pre { background: #2d2d2d; padding: 15px; border-radius: 5px; overflow-x: auto; color: #4fc1ff; }
+        .controls { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>PathFindAR WebSocket Tester</h2>
+    <div class="controls">
+        <button onclick="connect()">1. Connect to Server</button>
+        <button onclick="ping()">2. Send Ping</button>
+        <button onclick="localize()">3. Send Fake Camera Frame (Localize)</button>
+    </div>
+    <pre id="log">Waiting to connect...</pre>
+
+    <script>
+        let ws;
+        function log(msg) { 
+            const logEl = document.getElementById('log');
+            logEl.innerHTML = msg + '\n\n' + logEl.innerHTML; 
+        }
+
+        function connect() {
+            if (ws) { ws.close(); }
+            ws = new WebSocket("ws://127.0.0.1:8000/v1/ws/localize");
+            ws.onopen = () => log("🟢 Connected to server!");
+            ws.onmessage = (e) => {
+                const data = JSON.parse(e.data);
+                log("⬇️ Received:\n" + JSON.stringify(data, null, 2));
+            };
+            ws.onclose = () => log("🔴 Disconnected.");
+        }
+
+        function ping() { 
+            if(!ws) return log("⚠️ Connect first!");
+            const msg = { type: "ping" };
+            log("⬆️ Sent Ping");
+            ws.send(JSON.stringify(msg)); 
+        }
+
+        function localize() {
+            if(!ws) return log("⚠️ Connect first!");
+            const msg = {
+                type: "localize",
+                image_base64: "dGVzdA==", // Fake base64 image
+                arcore_pose: {
+                    position: [1.5, 0.5, 2.0],
+                    rotation: [0.0, 0.0, 0.0, 1.0]
+                },
+                timestamp: Date.now() / 1000,
+                floor: 0
+            };
+            log("⬆️ Sent Localize Frame");
+            ws.send(JSON.stringify(msg));
+        }
+    </script>
+</body>
+</html>

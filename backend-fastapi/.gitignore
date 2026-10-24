@@ -1,0 +1,45 @@
+# Environment
+.env
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+
+# Data (keep building_map.json, ignore generated data)
+data/reference_images/
+data/reference_features/
+data/reference_frames.db
+data/frames/
+data/descriptors/
+data/embeddings/
+data/faiss_index/
+
+# ML model weights (too large for git)
+models/*.pth
+models/*.pt
+models/*.onnx
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
